@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div class="card top d-flex flex-column justify-content-end mb-4">
+    <img src="{{ profile_data.topimage.url }}" alt="">
+    <div class="overlay text-white p-5">
+        <h1 class="title">{{ profile_data.title }}</h1>
+        <h5 class="subtitle">{{ profile_data.subtitle }}</h5>
+    </div>
+</div>
+
+<div class="row mb-5">
+    {% for work in work_data %}
+        <div class="col-6 col-md-3 mb-3">
+            <div class="card work-thumbnail">
+                {% if work.thumbnail %}
+                    <img class="work-img" src="{{ work.thumbnail.url }}" alt="">
+                {% else %}
+                    <img class="work-img" src="{{ work.image.url }}" alt="">
+                {% endif %}
+                <div class="work-title text-center">
+                    <p class="mb-0">{{ work.title }}</p>
+                </div>
+                <a class="stretched-link work" href="{% url 'detail' work.id %}"></a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
